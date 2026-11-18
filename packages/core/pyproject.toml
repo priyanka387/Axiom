@@ -1,0 +1,12 @@
+[project]
+name = "axiom-core"
+version = "0.1.0"
+description = "Shared Axiom backend primitives"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.10,<3",
+  "pydantic-settings>=2.6,<3",
+  "sqlalchemy[asyncio]>=2.0,<3",
+  "asyncpg>=0.30,<1",
+  "structlog>=24.4,<26",
+]
