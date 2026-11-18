@@ -1,10 +1,11 @@
 from logging.config import fileConfig
 
 from alembic import context
+from axiom_core.base import Base
+from axiom_core.config import get_settings
+from axiom_core.domain import models  # noqa: F401
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
-
-from axiom_core.config import get_settings
 
 config = context.config
 
@@ -16,7 +17,8 @@ config.set_main_option(
     get_settings().database_url.replace("%", "%%"),
 )
 
-target_metadata = None
+
+target_metadata = Base.metadata
 
 
 def run_migrations_offline() -> None:
@@ -47,9 +49,7 @@ async def run_async_migrations() -> None:
         )
 
         async with connection.begin():
-            await connection.run_sync(
-                lambda connection: context.run_migrations()
-            )
+            await connection.run_sync(lambda connection: context.run_migrations())
 
     await connectable.dispose()
 

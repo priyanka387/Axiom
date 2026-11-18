@@ -1,10 +1,10 @@
 from contextlib import asynccontextmanager
 
+from axiom_core.config import get_settings
+from axiom_core.logging import configure_logging
 from fastapi import FastAPI
 
 from axiom_api.routes.health import router as health_router
-from axiom_core.config import get_settings
-from axiom_core.logging import configure_logging
 
 
 @asynccontextmanager

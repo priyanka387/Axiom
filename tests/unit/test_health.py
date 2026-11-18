@@ -1,6 +1,5 @@
-from fastapi.testclient import TestClient
-
 from axiom_api.main import app
+from fastapi.testclient import TestClient
 
 
 def test_live_health() -> None:
